@@ -1,0 +1,21 @@
+#!/bin/bash
+
+read -p "Enter a list of words (separated by spaces): " input_words
+
+# Convert the input string to an array
+IFS=" " read -r -a words <<< "$input_words"
+
+# Create an associative array to keep track of word counts
+declare -A word_counts
+
+# Count the occurrences of each word
+for word in "${words[@]}"; do
+    ((word_counts[$word]++))
+done
+
+# Print the words that appear exactly once, sorted
+for word in "${words[@]}"; do
+    if [[ ${word_counts[$word]} -eq 1 ]]; then
+        echo "$word"
+    fi
+done | sort

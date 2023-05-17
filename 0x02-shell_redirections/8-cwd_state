@@ -1,0 +1,4 @@
+#!/bin/bash
+
+filename="ls_cwd_content"
+ls -al > $"filename"

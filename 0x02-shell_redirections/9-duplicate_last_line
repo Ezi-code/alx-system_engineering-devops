@@ -1,0 +1,6 @@
+#!/bi/bash
+
+filename = "iacta"
+last_line = $(tail -n 1 $"filename")
+
+echo $"last_line" >> $"filename"

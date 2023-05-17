@@ -1,0 +1,25 @@
+#!/bin/bash
+
+directory_count=0
+
+
+count_directories() {
+    for file in "$1"/*; do
+        if [[ -d "$file" ]]; then
+            ((directory_count++))
+            count_directories "$file"
+        fi
+    done
+}
+
+
+count_directories() {
+    for file in "$1"/*; do
+        if [[ -d "$file" && ! "$file" -ef "$1" && ! "$file" -ef "$PWD" ]]; then
+            ((directory_count++))
+            count_directories "$file"
+        fi
+    done
+}
+
+count_directories .
